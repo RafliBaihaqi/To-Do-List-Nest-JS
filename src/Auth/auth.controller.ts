@@ -37,7 +37,7 @@ export class AuthController {
     @Req() req: Request & { user: { userId: string } },
     @Res() res: Response,
   ) {
-    res.status(200).send({ userId: req.user['userId'] });
+    res.status(200).send({ userId: req.user.userId });
   }
 
   @Post('logout')
