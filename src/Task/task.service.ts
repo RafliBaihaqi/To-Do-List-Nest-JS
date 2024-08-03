@@ -4,6 +4,7 @@ import { CreateTaskDto } from './dto/create-task.dto';
 import { Task } from './interface/task.interface';
 import { PaginationQueryDto } from './dto/pagination.dto';
 import { TaskDataResponse } from './interface/task-data-response.interface';
+
 @Injectable()
 export class TasksService {
   constructor(@Inject('TASK_MODEL') private taskModel: Model<Task>) {}
@@ -38,5 +39,13 @@ export class TasksService {
         pages: Math.ceil(total / pageSize),
       },
     };
+  }
+
+  async deleteTask(id: string): Promise<Task | null> {
+    return this.taskModel.findOneAndDelete({ _id: id }).exec();
+  }
+
+  async getTaskByUserId(id: string, userId: string): Promise<Task | null> {
+    return this.taskModel.findOne({ _id: id, userId }).exec();
   }
 }

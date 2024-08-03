@@ -1,4 +1,4 @@
-import { Task } from './task.interface'; // Ensure you have a Task interface defined
+import { Task } from './task.interface';
 
 export interface TaskDataResponse {
   data: Task[];

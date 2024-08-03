@@ -93,7 +93,7 @@ export const fetchTask = async (
 };
 
 export const fetchTasksById = async (taskId: string): Promise<Task[]> => {
-  const response = await fetch(`${API_BASE_URL}/api/task/${taskId}`, {
+  const response = await fetch(`${API_BASE_URL}/tasks/${taskId}`, {
     credentials: 'include',
   });
   if (!response.ok) {
@@ -102,8 +102,8 @@ export const fetchTasksById = async (taskId: string): Promise<Task[]> => {
   return response.json();
 };
 
-export const deleteTask = async (taskId: string): Promise<Task> => {
-  const response = await fetch(`${API_BASE_URL}/api/task/delete/${taskId}`, {
+export const deleteTask = async (taskId: string)=> {
+  const response = await fetch(`${API_BASE_URL}/tasks/delete/${taskId}`, {
     method: 'DELETE',
     credentials: 'include',
   });
