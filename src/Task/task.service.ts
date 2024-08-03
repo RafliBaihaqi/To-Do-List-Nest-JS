@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { Task } from './interface/task.interface';
 import { PaginationQueryDto } from './dto/pagination.dto';
-
+import { TaskDataResponse } from './interface/task-data-response.interface';
 @Injectable()
 export class TasksService {
   constructor(@Inject('TASK_MODEL') private taskModel: Model<Task>) {}
@@ -16,7 +16,10 @@ export class TasksService {
     return newTask.save();
   }
 
-  async findAll(userId: string, paginationQuery: PaginationQueryDto) {
+  async findAll(
+    userId: string,
+    paginationQuery: PaginationQueryDto,
+  ): Promise<TaskDataResponse> {
     const { page = 1 } = paginationQuery;
     const pageSize = 5;
     const skip = pageSize * (page - 1);

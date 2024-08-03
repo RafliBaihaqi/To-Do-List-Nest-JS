@@ -1,16 +1,17 @@
-import { TaskType } from "../../backend/src/shared/types";
-import { RegisterFormData } from "./pages/registerUser";
-import { SignInFormData } from "./pages/signIn";
+import { Task } from '../../src/Task/interface/task.interface';
+import { RegisterFormData } from './pages/registerUser';
+import { SignInFormData } from './pages/signIn';
+import { TaskDataResponse } from '../../src/Task/interface/task-data-response.interface';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 //import.meta.env.VITE_API_BASE_URL
 
 export const register = async (formData: RegisterFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/users/register`, {
-    method: "POST",
-    credentials: "include",
+    method: 'POST',
+    credentials: 'include',
     headers: {
-      "content-type": "application/json",
+      'content-type': 'application/json',
     },
     body: JSON.stringify(formData),
   });
@@ -23,11 +24,11 @@ export const register = async (formData: RegisterFormData) => {
 
 export const validateToken = async () => {
   const response = await fetch(`${API_BASE_URL}/auth/validate-token`, {
-    credentials: "include",
+    credentials: 'include',
   });
 
   if (!response.ok) {
-    throw new Error("Token invalid");
+    throw new Error('Token invalid');
   }
 
   return response.json();
@@ -35,20 +36,20 @@ export const validateToken = async () => {
 
 export const signOut = async () => {
   const response = await fetch(`${API_BASE_URL}/auth/logout`, {
-    credentials: "include",
-    method: "POST",
+    credentials: 'include',
+    method: 'POST',
   });
   if (!response.ok) {
-    throw new Error("Error During Sign Out");
+    throw new Error('Error During Sign Out');
   }
 };
 
 export const Signin = async (formData: SignInFormData) => {
   const response = await fetch(`${API_BASE_URL}/auth/login`, {
-    method: "POST",
-    credentials: "include",
+    method: 'POST',
+    credentials: 'include',
     headers: {
-      "content-type": "application/json",
+      'content-type': 'application/json',
     },
     body: JSON.stringify(formData),
   });
@@ -59,66 +60,72 @@ export const Signin = async (formData: SignInFormData) => {
   }
 };
 
-
 export const addTask = async (taskFormData: URLSearchParams) => {
-  const response = await fetch(`${API_BASE_URL}/api/task`, {
-    method: "POST",
-    credentials: "include",
+  const response = await fetch(`${API_BASE_URL}/tasks`, {
+    method: 'POST',
+    credentials: 'include',
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: taskFormData.toString(),
   });
 
   if (!response.ok) {
-    throw new Error("Error adding task");
+    throw new Error('Error adding task');
   }
   return response.json();
 };
 
-export const fetchTask = async (page: number, limit: number): Promise<TaskDataResponse> => {
-  const response = await fetch(`${API_BASE_URL}/api/task?page=${page}&limit=${limit}`, {
-    credentials: "include",
-  });
+export const fetchTask = async (
+  page: number,
+  limit: number,
+): Promise<TaskDataResponse> => {
+  const response = await fetch(
+    `${API_BASE_URL}/tasks?page=${page}&limit=${limit}`,
+    {
+      credentials: 'include',
+    },
+  );
   if (!response.ok) {
-    throw new Error("Error fetching tasks");
+    throw new Error('Error fetching tasks');
   }
   return response.json();
 };
-export const fetchTasksById = async (taskId: string): Promise<TaskType[]> => {
+
+export const fetchTasksById = async (taskId: string): Promise<Task[]> => {
   const response = await fetch(`${API_BASE_URL}/api/task/${taskId}`, {
-    credentials: "include",
+    credentials: 'include',
   });
   if (!response.ok) {
-    throw new Error("Error fetching task");
+    throw new Error('Error fetching task');
   }
   return response.json();
 };
 
-export const deleteTask = async (taskId: string): Promise<TaskType> => {
+export const deleteTask = async (taskId: string): Promise<Task> => {
   const response = await fetch(`${API_BASE_URL}/api/task/delete/${taskId}`, {
-    method: "DELETE",
-    credentials: "include",
+    method: 'DELETE',
+    credentials: 'include',
   });
   if (!response.ok) {
-    throw new Error("Error deleting task");
+    throw new Error('Error deleting task');
   }
 };
 
 export const updateTaskById = async (taskFormData: URLSearchParams) => {
   const response = await fetch(
-    `${API_BASE_URL}/api/task/edit/${taskFormData.get("taskId")}`,
+    `${API_BASE_URL}/api/task/edit/${taskFormData.get('taskId')}`,
     {
-      method: "PUT",
-      credentials: "include",
+      method: 'PUT',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: taskFormData.toString(),
-    }
+    },
   );
   if (!response.ok) {
-    throw new Error("Error updating task");
+    throw new Error('Error updating task');
   }
   return response.json();
 };
