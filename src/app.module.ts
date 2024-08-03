@@ -6,6 +6,7 @@ import { DatabaseModule } from './Database/database.modules';
 import { AuthModule } from './auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { TasksModule } from './Task/task.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { join } from 'path';
     UserModule,
     DatabaseModule,
     AuthModule,
+    TasksModule,
   ],
   providers: [...databaseProviders],
 })
