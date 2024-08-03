@@ -11,6 +11,7 @@ import {
   Param,
   Res,
   HttpStatus,
+  Put,
 } from '@nestjs/common';
 import { TasksService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -18,7 +19,7 @@ import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
 import { PaginationQueryDto } from './dto/pagination.dto';
 import { TaskDataResponse } from './interface/task-data-response.interface';
 import { Request, Response } from 'express';
-
+import { Task } from './interface/task.interface';
 @Controller('tasks')
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
@@ -87,6 +88,39 @@ export class TasksController {
       return res
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
         .json({ message: 'Error fetching task' });
+    }
+  }
+
+  @Put('/edit/:id')
+  @UseGuards(JwtAuthGuard)
+  async editTask(
+    @Param('id') id: string,
+    @Body() updateTask: Partial<Task>,
+    @Req() req: Request & { user: { userId: string } },
+    @Res() res: Response,
+  ) {
+    try {
+      const userId = req.user.userId;
+      const d = new Date();
+      updateTask.lastUpdated = d.toLocaleString('id-ID');
+
+      const task = await this.tasksService.updateTaskById(
+        id,
+        userId,
+        updateTask,
+      );
+
+      if (!task) {
+        return res
+          .status(HttpStatus.NOT_FOUND)
+          .json({ message: 'Task not found' });
+      }
+
+      return res.status(HttpStatus.CREATED).json(task);
+    } catch (error) {
+      return res
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ message: 'Error Updating Task' });
     }
   }
 }

@@ -114,7 +114,7 @@ export const deleteTask = async (taskId: string)=> {
 
 export const updateTaskById = async (taskFormData: URLSearchParams) => {
   const response = await fetch(
-    `${API_BASE_URL}/api/task/edit/${taskFormData.get('taskId')}`,
+    `${API_BASE_URL}/tasks/edit/${taskFormData.get('taskId')}`,
     {
       method: 'PUT',
       credentials: 'include',

@@ -48,4 +48,14 @@ export class TasksService {
   async getTaskByUserId(id: string, userId: string): Promise<Task | null> {
     return this.taskModel.findOne({ _id: id, userId }).exec();
   }
+
+  async updateTaskById(
+    id: string,
+    userId: string,
+    updateTask: Partial<Task>,
+  ): Promise<Task | null> {
+    return this.taskModel
+      .findOneAndUpdate({ _id: id, userId }, updateTask, { new: true })
+      .exec();
+  }
 }
