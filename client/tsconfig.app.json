@@ -23,5 +23,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/Task/interface/task.interface.ts",
+    "src/Task/interface/task-data-response.interface.ts"
+  ]
 }

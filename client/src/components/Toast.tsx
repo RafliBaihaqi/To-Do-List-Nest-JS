@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 
 type ToastProps = {
-  message: string;
+  title: string
+  description: string;
   type: "SUCCESS" | "ERROR";
   onClose: () => void;
 };

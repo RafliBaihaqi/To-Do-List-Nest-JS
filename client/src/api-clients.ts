@@ -1,5 +1,5 @@
 import { Task } from '../../src/Task/interface/task.interface';
-import { RegisterFormData } from './pages/registerUser';
+import {RegisterFomrData} from "../src/pages/registerUser"
 import { SignInFormData } from './pages/signIn';
 import { TaskDataResponse } from '../../src/Task/interface/task-data-response.interface';
 

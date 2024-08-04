@@ -1,4 +1,3 @@
-import React from "react";
 import * as apiClient from "../api-clients";
 import { useAppContext } from "../contexts/AppContext";
 import { useMutation } from "react-query";
@@ -10,7 +9,7 @@ const DeleteTask = () => {
   const navigate = useNavigate();
 
   const { mutate, isLoading } = useMutation(
-    () => apiClient.deleteTask(taskId),
+    () => apiClient.deleteTask(taskId ?? ""),
     {
       onSuccess: () => {
         showToast({
