@@ -7,12 +7,11 @@ import { AuthModule } from './auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { TasksModule } from './Task/task.module';
-
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://root:root@todolist.lal1uni.mongodb.net/?retryWrites=true&w=majority&appName=ToDoList',
-    ),
+    ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
+    MongooseModule.forRoot(process.env.MONGODB_URI),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
     }),

@@ -10,7 +10,7 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(), // Ensure environment variables are loaded
+    ConfigModule.forRoot(),
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET_KEY,

@@ -25,7 +25,7 @@ export class AuthController {
         secure: process.env.NODE_ENV === 'production',
         maxAge: 86400000,
       });
-      res.status(200).json({ userId });
+      res.status(200).json({ userId, token });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

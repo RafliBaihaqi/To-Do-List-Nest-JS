@@ -12,6 +12,7 @@ import {
   Res,
   HttpStatus,
   Put,
+  HttpException,
 } from '@nestjs/common';
 import { TasksService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -30,12 +31,30 @@ export class TasksController {
     @Body() createTaskDto: CreateTaskDto,
     @Req() req: Request & { user: { userId: string } },
   ) {
-    const userId = req.user.userId;
-    const task = await this.tasksService.createTask({
-      ...createTaskDto,
-      userId,
-    });
-    return task;
+    try {
+      if (!req.user || !req.user.userId) {
+        throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+      }
+
+      const userId = req.user.userId;
+      const task = await this.tasksService.createTask({
+        ...createTaskDto,
+        userId,
+      });
+      return {
+        statusCode: HttpStatus.CREATED,
+        message: 'Task created successfully',
+        task,
+      };
+    } catch (error) {
+      if (error.status === HttpStatus.UNAUTHORIZED) {
+        throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+      }
+      throw new HttpException(
+        'Internal Server Error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   @Get()

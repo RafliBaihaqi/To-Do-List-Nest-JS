@@ -4,9 +4,9 @@ import { TasksService } from './task.service';
 import { TasksController } from './task.controller';
 import { taskSchema } from './Schemas/task.schemas';
 import { taskProviders } from './task.provider';
-import { databaseProviders } from 'src/Database/database.provider';
-import { DatabaseModule } from 'src/Database/database.modules';
-import { AuthModule } from 'src/auth/auth.module';
+import { databaseProviders } from '../Database/database.provider';
+import { DatabaseModule } from '../Database/database.modules';
+import { AuthModule } from '../Auth/auth.module';
 
 @Module({
   imports: [

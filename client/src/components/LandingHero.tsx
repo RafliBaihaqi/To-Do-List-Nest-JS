@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LandingHero = () => {
   return (
@@ -9,9 +9,14 @@ const LandingHero = () => {
           Welcome to Your Ultimate To-Do List
         </h1>
         <p className="text-white text-lg md:text-xl mb-6 drop-shadow-lg">
-          Organize your tasks efficiently and boost your productivity. Created by Rafli Baihaqi as part of the Odin Project's Assignment, this tool is designed to help you stay on top of your game.
+          Organize your tasks efficiently and boost your productivity. Created
+          by Rafli Baihaqi as part of the Dot Indonesia internship challenge, this tool
+          is designed to help you stay on top of your game.
         </p>
-        <Link className="bg-black text-white rounded-md px-6 py-3 hover:bg-slate-300 transition duration-300 ease-in-out shadow-lg" to="/sign-in">
+        <Link
+          className="bg-black text-white rounded-md px-6 py-3 hover:bg-slate-300 transition duration-300 ease-in-out shadow-lg"
+          to="/sign-in"
+        >
           Get Started
         </Link>
       </div>

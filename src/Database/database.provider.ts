@@ -4,8 +4,6 @@ export const databaseProviders = [
   {
     provide: 'DATABASE_CONNECTION',
     useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect(
-        'mongodb+srv://root:root@todolist.lal1uni.mongodb.net/?retryWrites=true&w=majority&appName=ToDoList',
-      ),
+      mongoose.connect(process.env.MONGODB_URI),
   },
 ];
