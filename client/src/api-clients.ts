@@ -3,7 +3,7 @@ import { RegisterFormData } from './pages/registerUser';
 import { SignInFormData } from './pages/signIn';
 import { TaskDataResponse } from '../../src/Task/interface/task-data-response.interface';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = "";
 //import.meta.env.VITE_API_BASE_URL
 
 export const register = async (formData: RegisterFormData) => {
