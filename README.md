@@ -25,4 +25,4 @@ Frontend pada proyek ini menggunakan pola Komponen-Halaman dan API Client:
 3. **Maintainability**: Dengan pemisahan yang jelas antara komponen UI dan logika bisnis, memudahkan untuk menemukan dan memperbaiki bug, serta melakukan refactoring kode.
 
 ## API Documentation
-https://documenter.getpostman.com/view/27313392/2sA3kdAxJS
+https://documenter.getpostman.com/view/27313392/2sA3rwNEcm
