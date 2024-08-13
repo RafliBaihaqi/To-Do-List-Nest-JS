@@ -4,8 +4,6 @@ import * as dotenv from 'dotenv';
 import * as cookieParser from 'cookie-parser';
 
 dotenv.config();
-console.log('MONGODB_URI:', process.env.MONGODB_URI);
-console.log('JWT_SECRET_KEY:', process.env.JWT_SECRET_KEY);
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());

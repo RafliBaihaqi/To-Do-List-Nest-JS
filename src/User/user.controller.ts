@@ -12,12 +12,12 @@ import { Response } from 'express';
 
 @Controller('User')
 export class AuthController {
-  constructor(private readonly authService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
   @Post('register')
   async register(@Body() registerDto: RegisterDto, @Res() res: Response) {
     try {
-      const result = await this.authService.register(registerDto);
+      const result = await this.userService.register(registerDto);
       const { token } = result;
 
       res.cookie('auth_token', token, {

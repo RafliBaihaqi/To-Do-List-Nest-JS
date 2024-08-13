@@ -59,6 +59,10 @@ const Register = () => {
                 className="border rounded w-full py-1 px-2 font-normal"
                 {...register("firstName", {
                   required: "This Field Is Required",
+                  maxLength: {
+                    value: 10, 
+                    message: "This field need 10 characters"
+                  },
                 })}
               ></input>
               {errors.firstName && (
@@ -73,6 +77,10 @@ const Register = () => {
                 className="border rounded w-full py-1 px-2 font-normal"
                 {...register("lastName", {
                   required: "This Field Is Required",
+                  maxLength: {
+                    value: 10, 
+                    message: "This field need 10 characters"
+                  },
                 })}
               ></input>
               {errors.lastName && (
