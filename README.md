@@ -27,6 +27,8 @@ Frontend pada proyek ini menggunakan pola Komponen-Halaman dan API Client:
 ## API Documentation
 https://documenter.getpostman.com/view/27313392/2sA3rwNEcm
 
+# Installation 
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
