@@ -13,6 +13,8 @@ import {
   HttpStatus,
   Put,
   HttpException,
+  NotFoundException,
+  ForbiddenException,
 } from '@nestjs/common';
 import { TasksService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -63,15 +65,47 @@ export class TasksController {
     @Req() req: Request & { user: { userId: string } },
     @Query() paginationQuery: PaginationQueryDto,
   ): Promise<TaskDataResponse> {
-    const userId = req.user.userId;
-    return this.tasksService.findAll(userId, paginationQuery);
+    try {
+      const userId = req.user.userId;
+      const tasks = await this.tasksService.findAll(userId, paginationQuery);
+
+      if (!tasks) {
+        throw new NotFoundException('No tasks found');
+      }
+
+      return tasks;
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new HttpException(
+        'Error fetching tasks',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   @Delete('/delete/:id')
   @UseGuards(JwtAuthGuard)
-  async deleteTask(@Param('id') id: string, @Res() res: Response) {
+  async deleteTask(
+    @Param('id') id: string,
+    @Req() req: Request & { user: { userId: string } },
+    @Res() res: Response,
+  ) {
     try {
+      const userId = req.user.userId;
       const deleteTask = await this.tasksService.deleteTask(id);
+      const task = await this.tasksService.getTaskByUserId(id, userId);
+
+      if (!task) {
+        throw new NotFoundException('Task not found');
+      }
+
+      if (task.userId !== userId) {
+        throw new ForbiddenException(
+          'You do not have permission to delete this task',
+        );
+      }
 
       if (!deleteTask) {
         return res
@@ -133,6 +167,12 @@ export class TasksController {
         return res
           .status(HttpStatus.NOT_FOUND)
           .json({ message: 'Task not found' });
+      }
+
+      if (task.userId !== userId) {
+        throw new ForbiddenException(
+          'You do not have permission to delete this task',
+        );
       }
 
       return res.status(HttpStatus.CREATED).json(task);
