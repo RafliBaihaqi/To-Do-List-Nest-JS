@@ -18,7 +18,7 @@ import {
 } from '@nestjs/common';
 import { TasksService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
+import { JwtAuthGuard } from '../Auth/jwt/jwt-auth.guard';
 import { PaginationQueryDto } from './dto/pagination.dto';
 import { TaskDataResponse } from './interface/task-data-response.interface';
 import { Request, Response } from 'express';

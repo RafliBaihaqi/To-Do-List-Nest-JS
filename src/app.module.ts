@@ -3,7 +3,7 @@ import { UserModule } from './User/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { databaseProviders } from './Database/database.provider';
 import { DatabaseModule } from './Database/database.modules';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './Auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { TasksModule } from './Task/task.module';
