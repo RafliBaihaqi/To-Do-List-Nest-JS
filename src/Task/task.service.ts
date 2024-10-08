@@ -22,8 +22,7 @@ export class TasksService {
     paginationQuery: PaginationQueryDto,
   ): Promise<TaskDataResponse> {
     const { page = 1, limit = 5 } = paginationQuery;
-    const pageSize = 5;
-    const skip = pageSize * (page - 1);
+    const skip = limit * (page - 1);
 
     const tasks = await this.taskModel.find({ userId }).skip(skip).limit(limit);
     const total = await this.taskModel.countDocuments({ userId });
@@ -33,7 +32,7 @@ export class TasksService {
       pagination: {
         total,
         page,
-        pages: Math.ceil(total / pageSize),
+        pages: Math.ceil(total / limit),
       },
     };
   }
