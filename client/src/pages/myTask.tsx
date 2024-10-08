@@ -5,8 +5,8 @@ import { useState } from "react";
 import { CiCalendarDate } from "react-icons/ci";
 import { GrStatusGood } from "react-icons/gr";
 import Pagination from "../components/Pagination";
-import { TaskType, TaskDataResponse } from "../types"; // Ensure you import your types
-
+import { Task } from '../interface/task.interface';
+import { TaskDataResponse } from '../interface/task-data-response.interface';
 const MyTask = () => {
   const [page, setPage] = useState<number>(1);
   const limit = 10;
@@ -41,7 +41,7 @@ const MyTask = () => {
           </Link>
         </span>
         <div className="grid grid-cols-1 gap-8">
-          {tasks.map((Task: TaskType) => (
+          {tasks.map((Task: Task) => (
             <div
               key={Task._id}
               className="flex flex-col justify-between border border-gray-300 rounded-lg p-6 shadow-lg gap-5 bg-white"

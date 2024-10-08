@@ -1,5 +1,5 @@
 import { useForm, FormProvider } from "react-hook-form";
-import { TaskType } from "../../../backend/src/shared/types";
+import { Task } from '../interface/task.interface';
 import DetailsSection from "./DetailsSection";
 import { useEffect } from "react";
 
@@ -10,7 +10,7 @@ export type TaskFormData = {
 };
 
 type Props = {
-  task?: TaskType;
+  task?: Task;
   onSave: (taskFormData: URLSearchParams) => void;
   isLoading: boolean;
 };
