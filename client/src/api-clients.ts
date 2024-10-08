@@ -1,7 +1,7 @@
-import { Task } from '../../src/Task/interface/task.interface';
-import {RegisterFomrData} from "../src/pages/registerUser"
+import { Task } from '../src/interface/task.interface';
+import {RegisterFormData} from "../src/pages/registerUser"
 import { SignInFormData } from './pages/signIn';
-import { TaskDataResponse } from '../../src/Task/interface/task-data-response.interface';
+import { TaskDataResponse } from '../src/interface/task-data-response.interface';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 //import.meta.env.VITE_API_BASE_URL

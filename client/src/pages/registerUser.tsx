@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 
-type RegisterFormData = {
+export type RegisterFormData = {
   firstName: string;
   lastName: string;
   email: string;
