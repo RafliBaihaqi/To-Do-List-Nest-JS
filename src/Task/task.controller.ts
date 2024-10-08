@@ -39,6 +39,7 @@ export class TasksController {
       }
 
       const userId = req.user.userId;
+      console.log(userId);
       const task = await this.tasksService.createTask({
         ...createTaskDto,
         userId,
