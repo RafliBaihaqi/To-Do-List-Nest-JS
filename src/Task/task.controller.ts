@@ -82,6 +82,7 @@ export class TasksController {
 
       return tasks;
     } catch (error) {
+      console.error(error);
       if (error instanceof NotFoundException) {
         throw error;
       }

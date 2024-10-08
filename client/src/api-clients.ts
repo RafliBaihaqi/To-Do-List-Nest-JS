@@ -80,7 +80,7 @@ export const fetchTask = async (
   limit: number = 10,
 ): Promise<TaskDataResponse> => {
   const response = await fetch(
-    `${API_BASE_URL}/tasks?page=${page}&limit=${limit}`,
+    `${API_BASE_URL}/tasks?page=${Number(page)}&limit=${Number(limit)}`,
     {
       credentials: 'include',
     },
