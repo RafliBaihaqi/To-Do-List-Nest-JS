@@ -38,13 +38,7 @@ export class AuthController {
     @Req() req: Request & { user: { userId: string } },
     @Res() res: Response,
   ) {
-    const user = req.user;
-    if (!user || !user.userId) {
-      return res
-        .status(401)
-        .send({ message: 'Token invalid or user not found' });
-    }
-    return res.status(200).send({ userId: user.userId });
+    res.status(200).send({ userId: req.user.userId });
   }
 
   @Post('logout')
