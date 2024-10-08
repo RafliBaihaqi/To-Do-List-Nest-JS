@@ -39,11 +39,13 @@ export class TasksController {
       }
 
       const userId = req.user.userId;
-      console.log(userId);
-      const task = await this.tasksService.createTask({
+
+      const taskData = {
         ...createTaskDto,
         userId,
-      });
+      };
+
+      const task = await this.tasksService.createTask(taskData);
       return {
         statusCode: HttpStatus.CREATED,
         message: 'Task created successfully',
