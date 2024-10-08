@@ -21,14 +21,11 @@ export class TasksService {
     userId: string,
     paginationQuery: PaginationQueryDto,
   ): Promise<TaskDataResponse> {
-    const { page = 1 } = paginationQuery;
+    const { page = 1, limit = 5 } = paginationQuery;
     const pageSize = 5;
     const skip = pageSize * (page - 1);
 
-    const tasks = await this.taskModel
-      .find({ userId })
-      .skip(skip)
-      .limit(pageSize);
+    const tasks = await this.taskModel.find({ userId }).skip(skip).limit(limit);
     const total = await this.taskModel.countDocuments({ userId });
 
     return {

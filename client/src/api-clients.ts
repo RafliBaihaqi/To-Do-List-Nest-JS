@@ -76,8 +76,8 @@ export const addTask = async (taskFormData: URLSearchParams) => {
 };
 
 export const fetchTask = async (
-  page: number,
-  limit: number,
+  page: number = 1,
+  limit: number = 10,
 ): Promise<TaskDataResponse> => {
   const response = await fetch(
     `${API_BASE_URL}/tasks?page=${page}&limit=${limit}`,
