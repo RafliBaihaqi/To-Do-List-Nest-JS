@@ -70,11 +70,7 @@ export class TasksController {
   ): Promise<TaskDataResponse> {
     try {
       const userId = req.user.userId;
-
-      const page = paginationQuery.page || 1;
-      const limit = paginationQuery.limit || 5;
-
-      const tasks = await this.tasksService.findAll(userId, { page, limit });
+      const tasks = await this.tasksService.findAll(userId, paginationQuery);
 
       if (!tasks) {
         throw new NotFoundException('No tasks found');
@@ -82,7 +78,6 @@ export class TasksController {
 
       return tasks;
     } catch (error) {
-      console.error(error);
       if (error instanceof NotFoundException) {
         throw error;
       }
