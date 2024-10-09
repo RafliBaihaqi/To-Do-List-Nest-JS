@@ -97,7 +97,6 @@ export class TasksController {
   ) {
     try {
       const userId = req.user.userId;
-      const deleteTask = await this.tasksService.deleteTask(id);
       const task = await this.tasksService.getTaskByUserId(id, userId);
 
       if (!task) {
@@ -109,6 +108,7 @@ export class TasksController {
           'You do not have permission to delete this task',
         );
       }
+      const deleteTask = await this.tasksService.deleteTask(id);
 
       if (!deleteTask) {
         return res
