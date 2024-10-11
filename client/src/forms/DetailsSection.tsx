@@ -46,7 +46,7 @@ const DetailsSection = () => {
             <option value="" disabled className="text-sm font-bold">
               Select Task Status
             </option>
-            {["Not Started", "Completed", "In Progress", "Canceled"].map((status, index) => (
+            {["Not Started", "Completed", "In-Progress", "Canceled"].map((status, index) => (
               <option key={index} value={status} className="text-sm">
                 {status}
               </option>

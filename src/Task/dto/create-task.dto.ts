@@ -18,7 +18,7 @@ export class CreateTaskDto {
   description?: string;
 
   @IsString()
-  @IsIn(['Not Started', 'In-Progress', 'Completed'])
+  @IsIn(['Not Started', 'In-Progress', 'Completed', 'Canceled'])
   @IsOptional()
   status?: string;
 }
