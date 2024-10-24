@@ -62,7 +62,6 @@ VITE_API_BASE_URL=http://localhost:3000
 
 ```
 npm install
-cd src
 npm run start:dev
 ```
 ## Frontend
